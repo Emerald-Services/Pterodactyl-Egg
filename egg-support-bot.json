@@ -17,22 +17,22 @@
     "startup": "if [ -d .git ]; then git pull; fi; if [ -f \/home\/container\/package.json ]; then \/usr\/local\/bin\/npm start; fi;",
     "config": {
         "files": "{}",
-        "startup": "{\r\n    \"done\": \"SupportBot proudly created by Emerald Services\"\r\n}",
+        "startup": "{\r\n    \"done\": \"SupportBot proudly created by Emerald Development\"\r\n}",
         "logs": "{}",
         "stop": "^^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n# SupportBot Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\necho -e \"${BETA}\"\r\napt update\r\napt install -y git curl jq file unzip make gcc g++ python python-dev libtool\r\n\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\n\r\n## pull git js bot repo\r\nif [ \"$(ls -A \/mnt\/server)\" ]; then\r\n    echo -e \"\/mnt\/server directory is not empty.\"\r\n    if [ -d .git ]; then\r\n        echo -e \".git directory exists\"\r\n        if [ -f .git\/config ]; then\r\n            echo -e \"loading info from git config\"\r\n            ORIGIN=$(git config --get remote.origin.url)\r\n        else\r\n            echo -e \"files found with no git config\"\r\n            echo -e \"closing out without touching things to not break anything\"\r\n            exit 10\r\n        fi\r\n    fi\r\n\r\n    if [ \"${ORIGIN}\" == \"https:\/\/github.com\/Emerald-Services\/SupportBot.git\" ]; then\r\n        echo \"pulling latest from github\"\r\n        git pull\r\n    fi\r\nelse\r\n    echo -e \"\/mnt\/server is empty.\\ncloning files into repo\"\r\n    if [ ${BETA} == \"1\" ]; then\r\n        echo -e \"cloning beta branch\"\r\n        git clone --single-branch --branch dev https:\/\/github.com\/Emerald-Services\/SupportBot.git .\r\n    else\r\n        echo -e \"cloning default branch\"\r\n        git clone https:\/\/github.com\/Emerald-Services\/SupportBot.git .\r\n    fi\r\n\r\nfi\r\n\r\necho \"Installing nodejs packages\"\r\nif [ -f \/mnt\/server\/package.json ]; then\r\n    \/usr\/local\/bin\/npm i\r\nfi\r\n\r\necho -e \"install complete\"\r\nexit 0",
+            "script": "#!\/bin\/bash\r\n# SupportBot Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\necho -e \"${DEV}\"\r\napt update\r\napt install -y git curl jq file unzip make gcc g++ python python-dev libtool\r\n\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\n\r\n## pull git js bot repo\r\nif [ \"$(ls -A \/mnt\/server)\" ]; then\r\n    echo -e \"\/mnt\/server directory is not empty.\"\r\n    if [ -d .git ]; then\r\n        echo -e \".git directory exists\"\r\n        if [ -f .git\/config ]; then\r\n            echo -e \"loading info from git config\"\r\n            ORIGIN=$(git config --get remote.origin.url)\r\n        else\r\n            echo -e \"files found with no git config\"\r\n            echo -e \"closing out without touching things to not break anything\"\r\n            exit 10\r\n        fi\r\n    fi\r\n\r\n    if [ \"${ORIGIN}\" == \"https:\/\/github.com\/Emerald-Services\/SupportBot.git\" ]; then\r\n        echo \"pulling latest from github\"\r\n        git pull\r\n    fi\r\nelse\r\n    echo -e \"\/mnt\/server is empty.\\ncloning files into repo\"\r\n    if [ ${BETA} == \"1\" ]; then\r\n        echo -e \"cloning beta branch\"\r\n        git clone --single-branch --branch dev https:\/\/github.com\/Emerald-Services\/SupportBot.git .\r\n    else\r\n        echo -e \"cloning default branch\"\r\n        git clone https:\/\/github.com\/Emerald-Services\/SupportBot.git .\r\n    fi\r\n\r\nfi\r\n\r\necho \"Installing nodejs packages\"\r\nif [ -f \/mnt\/server\/package.json ]; then\r\n    \/usr\/local\/bin\/npm i\r\nfi\r\n\r\necho -e \"install complete\"\r\nexit 0",
             "container": "node:17-buster-slim",
             "entrypoint": "bash"
         }
     },
     "variables": [
         {
-            "name": "Beta",
+            "name": "Dev",
             "description": "NOT RECOMMENDED: Downloads development branch of SupportBot",
-            "env_variable": "BETA",
+            "env_variable": "DEV",
             "default_value": "0",
             "user_viewable": true,
             "user_editable": true,
