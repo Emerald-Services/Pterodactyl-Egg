@@ -1,18 +1,17 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
     "meta": {
-        "version": "PTDL_v1",
+        "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2021-10-29T01:55:51+01:00",
+    "exported_at": "2024-06-12T14:43:25+02:00",
     "name": "SupportBot",
-    "author": "noah@n0ahmc.com",
+    "author": "admin@emeraldsrv.com",
     "description": "Installs the latest release of SupportBot from Github",
     "features": null,
-    "images": [
-        "ghcr.io\/parkervcp\/yolks:nodejs_17",
-        "ghcr.io\/parkervcp\/yolks:nodejs_16"
-    ],
+    "docker_images": {
+        "NodeJS 20 ": " ghcr.io\/parkervcp\/yolks:nodejs_20"
+    },
     "file_denylist": [],
     "startup": "if [ -d .git ]; then git pull; fi; if [ -f \/home\/container\/package.json ]; then \/usr\/local\/bin\/npm start; fi;",
     "config": {
@@ -36,7 +35,8 @@
             "default_value": "0",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean"
+            "rules": "required|boolean",
+            "field_type": "text"
         }
     ]
 }
