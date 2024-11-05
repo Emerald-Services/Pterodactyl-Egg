@@ -6,11 +6,13 @@
     },
     "exported_at": "2024-06-12T14:43:25+02:00",
     "name": "SupportBot",
-    "author": "admin@emeraldsrv.com",
+    "author": "me@1tzemerald.com",
     "description": "Installs the latest release of SupportBot from Github",
     "features": null,
     "docker_images": {
-        "NodeJS 20 ": " ghcr.io\/parkervcp\/yolks:nodejs_20"
+        "NodeJS 20 ": " ghcr.io\/parkervcp\/yolks:nodejs_20",
+        "NodeJS 21 ": " ghcr.io\/parkervcp\/yolks:nodejs_21"
+        
     },
     "file_denylist": [],
     "startup": "if [ -d .git ]; then git pull; fi; if [ -f \/home\/container\/package.json ]; then \/usr\/local\/bin\/npm start; fi;",
